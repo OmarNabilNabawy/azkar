@@ -1,5 +1,3 @@
-import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:azkar_alyam_y_allayla/otherWidgets/notifications.dart';
 import 'package:azkar_alyam_y_allayla/provider/AppTheme.dart';
 import 'package:azkar_alyam_y_allayla/provider/favorite.dart';
 import 'package:azkar_alyam_y_allayla/provider/searching.dart';
@@ -45,7 +43,6 @@ class MainTrailing extends StatefulWidget {
 class _MainTrailingState extends State<MainTrailing> {
   @override
   Widget build(BuildContext context) {
-    print('==================================${widget.cardIndex}');
     final themeProvider = Provider.of<AppTheme>(context, listen: false);
     return Selector<Searching, List<ZakrModel>>(
       selector: (_, helper) => helper.searchedList,
@@ -63,9 +60,9 @@ class _MainTrailingState extends State<MainTrailing> {
           // وبعد كده بحثت يظهر نجمه المفضلة علي الحديث صح
           icon: searchedList.isEmpty
               ? selectedIconShape(zakrMainList[widget.cardIndex].isFavor,
-                  themeProvider.mycolorsIconsColor)
+                  themeProvider.myAppTheme[0].mycolorsIconsColor)
               : selectedIconShape(searchedList[widget.cardIndex].isFavor,
-                  themeProvider.mycolorsIconsColor),
+                  themeProvider.myAppTheme[0].mycolorsIconsColor),
         );
       },
     );

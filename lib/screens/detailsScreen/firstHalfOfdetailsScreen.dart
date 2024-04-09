@@ -27,14 +27,14 @@ class FirstHalfOfdetailsScreen extends StatelessWidget {
                 usedListViewInsideDetails[cardIndex].content,
                 style: fontsProvider.textFamily700.copyWith(
                     fontSize: (fontsProvider.fontSizeValue * 3).sp,
-                    color: themeProvider.mycolorsFontColor),
+                    color: themeProvider.myAppTheme[0].mycolorsFontColor),
               ),
             ),
           ),
         ),
         Divider(
           thickness: 0.8,
-          color: themeProvider.mycolorsDetailsDividerColor,
+          color: themeProvider.myAppTheme[0].mycolorsDetailsDividerColor,
           height: 25.h,
           indent: 30.w,
           endIndent: 40.w,

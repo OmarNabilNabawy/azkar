@@ -1,8 +1,13 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
-import 'package:flutter/material.dart';
+import 'package:azkar_alyam_y_allayla/const.dart';
+import 'package:azkar_alyam_y_allayla/dataModel.dart';
+import 'package:azkar_alyam_y_allayla/main.dart';
+import 'package:azkar_alyam_y_allayla/provider/counter.dart';
+import 'package:provider/provider.dart';
+import '../screens/settingsScreen/settingsNotifications.dart';
 
 class NotificationService {
-  bool createdNotification = false;  //! save this bool in shared_preferences
+  static bool allowedNotification = false;
   Future<void> awesomeNotificationInitialization() async {
     await AwesomeNotifications().initialize(
       null,
@@ -12,130 +17,110 @@ class NotificationService {
           channelName: 'Basic notifications',
           channelDescription: 'Notification channel for basic tests',
           importance: NotificationImportance.High,
-          defaultPrivacy: NotificationPrivacy.Public,
-          defaultRingtoneType: DefaultRingtoneType.Alarm,
-          defaultColor: const Color(0xFF9D50DD),
-          ledColor: Colors.white,
+          soundSource: 'resource://raw/res_thaly',
           locked: true,
-          enableVibration: true,
           playSound: true,
+          enableVibration: true,
+          channelShowBadge: true,
         )
       ],
       debug: true,
     );
   }
 
-  void sendNotification() {
+  static Future<void> startListeningNotificationEvents() async {
+    AwesomeNotifications().setListeners(
+        onActionReceivedMethod: onActionReceivedImplementationMethod);
+  }
+
+  void sendNotification() async {
+    allowedNotification = true;
     AwesomeNotifications().createNotification(
       content: NotificationContent(
         id: 1,
         channelKey: 'basic_channel',
-        title: 'Notification title',
-        body: 'Notification body',
+        title: 'لا تنسي ذكر الله',
+        body: 'أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ',
       ),
       schedule: NotificationCalendar(
+        timeZone: 'Africa/Cairo',
         minute: 0,
-        repeats: true
+        second: 0,
+        millisecond: 0,
+        repeats: true,
+        allowWhileIdle: true,
+        preciseAlarm: true,
+      ),
+    );
+    createNewNotification('أذكار الاستيقاظ من النوم', 2, 1);
+    createNewNotification('أذكار لبس الثوب', 3, 2);
+    createNewNotification('أذكار الخروج من البيت', 4, 3);
+    createNewNotification('أذكار دخول البيت', 5, 4);
+    createNewNotification('أذكار الصباح', 6, 5);
+    createNewNotification('أذكار المساء', 7, 6);
+    createNewNotification('أذكار النوم', 8, 7);
+  }
+
+  void createNewNotification(String title, int id,index) async {
+    AwesomeNotifications().createNotification(
+      content: NotificationContent(
+        id: id,
+        channelKey: 'basic_channel',
+        title: title,
+        body: 'أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ',
+      ),
+      schedule: NotificationCalendar(
+        timeZone: 'Africa/Cairo',
+        hour: notificationTimeList[index - 1].hour,
+        minute: notificationTimeList[index - 1].minute,
+        second: 0,
+        millisecond: 0,
+        repeats: true,
+        allowWhileIdle: true,
+        preciseAlarm: true,
       ),
     );
   }
+
+  static Future<void> onActionReceivedImplementationMethod(
+      ReceivedAction receivedAction) async {
+    if (receivedAction.id != 1) {
+      MyApp.navigatorKey.currentState
+          ?.pushNamedAndRemoveUntil(detailsScreenRoutes, (route) => true);
+      usedListViewInsideDetails = zakrMainList;
+      switch (receivedAction.id) {
+        case 2:
+          Provider.of<Counter>(MyApp.navigatorKey.currentContext!,
+                  listen: false)
+              .cardIndex = 0;
+          break;
+        case 3:
+          Provider.of<Counter>(MyApp.navigatorKey.currentContext!,
+                  listen: false)
+              .cardIndex = 1;
+          break;
+        case 4:
+          Provider.of<Counter>(MyApp.navigatorKey.currentContext!,
+                  listen: false)
+              .cardIndex = 2;
+          break;
+        case 5:
+          Provider.of<Counter>(MyApp.navigatorKey.currentContext!,
+                  listen: false)
+              .cardIndex = 3;
+          break;
+        case 6:
+        case 7:
+          Provider.of<Counter>(MyApp.navigatorKey.currentContext!,
+                  listen: false)
+              .cardIndex = 20;
+          break;
+        case 8:
+          Provider.of<Counter>(MyApp.navigatorKey.currentContext!,
+                  listen: false)
+              .cardIndex = 22;
+          break;
+      }
+    }
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-// import 'package:flutter_timezone/flutter_timezone.dart';
-// import 'package:timezone/data/latest.dart' as tz;
-// import 'package:timezone/timezone.dart' as tz;
-
-// class Notifications {
-//   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-//       FlutterLocalNotificationsPlugin();
-
-//   final AndroidInitializationSettings androidInitializationSettings =
-//       const AndroidInitializationSettings('flutter_logo');
-//   Future<void> initialiseNotifications() async {
-//     InitializationSettings initializationSettings =
-//         InitializationSettings(android: androidInitializationSettings);
-//     await flutterLocalNotificationsPlugin.initialize(initializationSettings);
-//   }
-
-//   Future<void> sendNotification(String title, String body) async {
-//     AndroidNotificationDetails androidNotificationDetails =
-//         const AndroidNotificationDetails(
-//       'channelId',
-//       'channelName',
-//       importance: Importance.max,
-//       priority: Priority.high,
-//     );
-//     NotificationDetails notificationDetails = NotificationDetails(
-//       android: androidNotificationDetails,
-//     );
-//     await flutterLocalNotificationsPlugin.show(
-//       0,
-//       title,
-//       body,
-//       notificationDetails,
-//     );
-//   }
-
-//   void sendNotificationZonedSchedule(String title, String body) async {
-//     const AndroidNotificationDetails androidNotificationDetails =
-//         AndroidNotificationDetails(
-//       'channelId',
-//       'channelName',
-//       importance: Importance.max,
-//       priority: Priority.high,
-//     );
-//     NotificationDetails notificationDetails = const NotificationDetails(
-//       android: androidNotificationDetails,
-//     );
-//     tz.initializeTimeZones();
-//     final String currentTimeZone = await FlutterTimezone.getLocalTimezone();
-//     tz.setLocalLocation(tz.getLocation(currentTimeZone));
-//     await flutterLocalNotificationsPlugin.zonedSchedule(
-//       0,
-//       title,
-//       body,
-//       tz.TZDateTime.now(tz.local).add(const Duration(seconds: 2)),
-//       notificationDetails,
-//       uiLocalNotificationDateInterpretation:
-//           UILocalNotificationDateInterpretation.absoluteTime,
-//     );
-//   }
-// }

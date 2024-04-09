@@ -14,179 +14,180 @@ Color lightBlue = const Color(0xff0047AB);
 Color darkRed = const Color(0xff510c18);
 Color lightRed = const Color(0xff690f20);
 Color darkbrown = const Color(0xff2d0014);
-Color lightbrown   = const Color(0xff58310E);
+Color lightbrown = const Color(0xff58310E);
 Color lightGold = const Color(0xffaf8d3a);
 
 //=======================================================================================
 
 class AppTheme extends ChangeNotifier {
-  final themes = [
-    MyTheme(bodyColor: darkGreen, fontColor: gold, isSelected: true),
-    MyTheme(bodyColor: black, fontColor: gold),
-    MyTheme(bodyColor: darkPurple, fontColor: white),
-    MyTheme(bodyColor: darkBlue, fontColor: white),
-    MyTheme(bodyColor: darkRed, fontColor: white),
-    MyTheme(bodyColor: darkbrown, fontColor: lightGold),
+  List<SettingsContainerTheme> settingsContainerThemes = [
+    SettingsContainerTheme(
+        bodyColor: darkGreen, fontColor: gold, isSelected: true),
+    SettingsContainerTheme(bodyColor: black, fontColor: gold),
+    SettingsContainerTheme(bodyColor: darkPurple, fontColor: white),
+    SettingsContainerTheme(bodyColor: darkBlue, fontColor: white),
+    SettingsContainerTheme(bodyColor: darkRed, fontColor: white),
+    SettingsContainerTheme(bodyColor: darkbrown, fontColor: lightGold),
   ];
 
-  Color mycolorsAppBarsColor = darkGreen;
-  Color mycolorsPagesBackgroudColor = white;
-  Color mycolorsNavigationBarBackground = darkGreen;
-
-  Color mycolorsZakrCardColor = darkGreen;
-  Color mycolorsFontColor = gold;
-  Color mycolorsIconsColor = gold;
-
-  Color mycolorsDetailsBackgroundColor = darkGreen;
-  Color mycolorsDetailsDividerColor = gold;
-  Color mycolorsDetailsButtonsForgroundColor = darkGreen;
-  Color mycolorsDetailsButtonsBackgroundColor = gold;
-
-  Color mycolorsSettingsTemplateFontColor = gold;
-  Color mycolorsSettingsTemplateContainerColor = darkGreen;
-  Color mycolorsSettingsSliderthumbColor = darkGreen;
-  Color mycolorsSettingContainersBordersColor = darkGreen;
-  Color mycolorsSettingFontFamilyColor = gold;
-  Color mycolorsSelectedThemeBorderColor = gold;
+  List<MyAppTheme> myAppTheme = [
+    MyAppTheme(
+      mycolorsAppBarsColor: darkGreen,
+      mycolorsPagesBackgroudColor: white,
+      mycolorsNavigationBarBackground: darkGreen,
+      mycolorsZakrCardColor: darkGreen,
+      mycolorsFontColor: gold,
+      mycolorsIconsColor: gold,
+      mycolorsDetailsBackgroundColor: darkGreen,
+      mycolorsDetailsDividerColor: gold,
+      mycolorsDetailsButtonsForgroundColor: darkGreen,
+      mycolorsDetailsButtonsBackgroundColor: gold,
+      mycolorsSettingsTemplateFontColor: gold,
+      mycolorsSettingsTemplateContainerColor: darkGreen,
+      mycolorsSettingsSliderthumbColor: darkGreen,
+      mycolorsSettingContainersBordersColor: darkGreen,
+      mycolorsSettingFontFamilyColor: gold,
+      mycolorsSelectedThemeBorderColor: gold,
+    )
+  ];
 
   void selectedThemeContainer(int index) {
-    for (var i = 0; i < themes.length; i++) {
-      themes[i].isSelected = false;
+    for (var i = 0; i < settingsContainerThemes.length; i++) {
+      settingsContainerThemes[i].isSelected = false;
     }
-    themes[index].isSelected = true;
+    settingsContainerThemes[index].isSelected = true;
     notifyListeners();
   }
 
   void selectedTheme(int index) {
     switch (index) {
       case 0:
-        mycolorsAppBarsColor = darkGreen;
-        mycolorsPagesBackgroudColor = white;
-        mycolorsNavigationBarBackground = darkGreen;
+        myAppTheme[0].mycolorsAppBarsColor = darkGreen;
+        myAppTheme[0].mycolorsPagesBackgroudColor = white;
+        myAppTheme[0].mycolorsNavigationBarBackground = darkGreen;
 
-        mycolorsZakrCardColor = darkGreen;
-        mycolorsFontColor = gold;
-        mycolorsIconsColor = gold;
+        myAppTheme[0].mycolorsZakrCardColor = darkGreen;
+        myAppTheme[0].mycolorsFontColor = gold;
+        myAppTheme[0].mycolorsIconsColor = gold;
 
-        mycolorsDetailsBackgroundColor = darkGreen;
-        mycolorsDetailsDividerColor = gold;
-        mycolorsDetailsButtonsForgroundColor = darkGreen;
-        mycolorsDetailsButtonsBackgroundColor = gold;
+        myAppTheme[0].mycolorsDetailsBackgroundColor = darkGreen;
+        myAppTheme[0].mycolorsDetailsDividerColor = gold;
+        myAppTheme[0].mycolorsDetailsButtonsForgroundColor = darkGreen;
+        myAppTheme[0].mycolorsDetailsButtonsBackgroundColor = gold;
 
-        mycolorsSettingsTemplateFontColor = gold;
-        mycolorsSettingsTemplateContainerColor = darkGreen;
-        mycolorsSettingsSliderthumbColor = darkGreen;
-        mycolorsSettingContainersBordersColor = darkGreen;
-        mycolorsSettingFontFamilyColor = gold;
-        mycolorsSelectedThemeBorderColor = gold;
+        myAppTheme[0].mycolorsSettingsTemplateFontColor = gold;
+        myAppTheme[0].mycolorsSettingsTemplateContainerColor = darkGreen;
+        myAppTheme[0].mycolorsSettingsSliderthumbColor = darkGreen;
+        myAppTheme[0].mycolorsSettingContainersBordersColor = darkGreen;
+        myAppTheme[0].mycolorsSettingFontFamilyColor = gold;
+        myAppTheme[0].mycolorsSelectedThemeBorderColor = gold;
         break;
       case 1:
-        mycolorsAppBarsColor = black;
-        mycolorsPagesBackgroudColor = black;
-        mycolorsNavigationBarBackground = black;
+        myAppTheme[0].mycolorsAppBarsColor = black;
+        myAppTheme[0].mycolorsPagesBackgroudColor = black;
+        myAppTheme[0].mycolorsNavigationBarBackground = black;
 
-        mycolorsZakrCardColor = black;
-        mycolorsFontColor = gold;
-        mycolorsIconsColor = gold;
+        myAppTheme[0].mycolorsZakrCardColor = black;
+        myAppTheme[0].mycolorsFontColor = gold;
+        myAppTheme[0].mycolorsIconsColor = gold;
 
-        mycolorsDetailsBackgroundColor = black;
-        mycolorsDetailsDividerColor = gold;
-        mycolorsDetailsButtonsForgroundColor = black;
-        mycolorsDetailsButtonsBackgroundColor = gold;
+        myAppTheme[0].mycolorsDetailsBackgroundColor = black;
+        myAppTheme[0].mycolorsDetailsDividerColor = gold;
+        myAppTheme[0].mycolorsDetailsButtonsForgroundColor = black;
+        myAppTheme[0].mycolorsDetailsButtonsBackgroundColor = gold;
 
-        mycolorsSettingsTemplateFontColor = black;
-        mycolorsSettingsTemplateContainerColor = gold;
-        mycolorsSettingsSliderthumbColor = gold;
-        mycolorsSettingContainersBordersColor = gold;
-        mycolorsSettingFontFamilyColor = gold;
-        mycolorsSelectedThemeBorderColor = gold;
+        myAppTheme[0].mycolorsSettingsTemplateFontColor = black;
+        myAppTheme[0].mycolorsSettingsTemplateContainerColor = gold;
+        myAppTheme[0].mycolorsSettingsSliderthumbColor = gold;
+        myAppTheme[0].mycolorsSettingContainersBordersColor = gold;
+        myAppTheme[0].mycolorsSettingFontFamilyColor = gold;
+        myAppTheme[0].mycolorsSelectedThemeBorderColor = gold;
         break;
       case 2:
-        mycolorsAppBarsColor = darkPurple;
-        mycolorsPagesBackgroudColor = lightPurple;
-        mycolorsNavigationBarBackground = darkPurple;
+        myAppTheme[0].mycolorsAppBarsColor = darkPurple;
+        myAppTheme[0].mycolorsPagesBackgroudColor = lightPurple;
+        myAppTheme[0].mycolorsNavigationBarBackground = darkPurple;
 
-        mycolorsZakrCardColor = darkPurple;
-        mycolorsFontColor = white;
-        mycolorsIconsColor = white;
+        myAppTheme[0].mycolorsZakrCardColor = darkPurple;
+        myAppTheme[0].mycolorsFontColor = white;
+        myAppTheme[0].mycolorsIconsColor = white;
 
-        mycolorsDetailsBackgroundColor = darkPurple;
-        mycolorsDetailsDividerColor = white;
-        mycolorsDetailsButtonsForgroundColor = white;
-        mycolorsDetailsButtonsBackgroundColor = lightPurple;
+        myAppTheme[0].mycolorsDetailsBackgroundColor = darkPurple;
+        myAppTheme[0].mycolorsDetailsDividerColor = white;
+        myAppTheme[0].mycolorsDetailsButtonsForgroundColor = white;
+        myAppTheme[0].mycolorsDetailsButtonsBackgroundColor = lightPurple;
 
-        mycolorsSettingsTemplateFontColor = white;
-        mycolorsSettingsTemplateContainerColor = darkPurple;
-        mycolorsSettingsSliderthumbColor = white;
-        mycolorsSettingContainersBordersColor = darkPurple;
-        mycolorsSettingFontFamilyColor = white;
-        mycolorsSelectedThemeBorderColor = white;
+        myAppTheme[0].mycolorsSettingsTemplateFontColor = white;
+        myAppTheme[0].mycolorsSettingsTemplateContainerColor = darkPurple;
+        myAppTheme[0].mycolorsSettingsSliderthumbColor = white;
+        myAppTheme[0].mycolorsSettingContainersBordersColor = darkPurple;
+        myAppTheme[0].mycolorsSettingFontFamilyColor = white;
+        myAppTheme[0].mycolorsSelectedThemeBorderColor = white;
         break;
       case 3:
-        mycolorsAppBarsColor = darkBlue;
-        mycolorsPagesBackgroudColor = lightBlue;
-        mycolorsNavigationBarBackground = darkBlue;
+        myAppTheme[0].mycolorsAppBarsColor = darkBlue;
+        myAppTheme[0].mycolorsPagesBackgroudColor = lightBlue;
+        myAppTheme[0].mycolorsNavigationBarBackground = darkBlue;
 
-        mycolorsZakrCardColor = darkBlue;
-        mycolorsFontColor = white;
-        mycolorsIconsColor = white;
+        myAppTheme[0].mycolorsZakrCardColor = darkBlue;
+        myAppTheme[0].mycolorsFontColor = white;
+        myAppTheme[0].mycolorsIconsColor = white;
 
-        mycolorsDetailsBackgroundColor = darkBlue;
-        mycolorsDetailsDividerColor = white;
-        mycolorsDetailsButtonsForgroundColor = white;
-        mycolorsDetailsButtonsBackgroundColor = lightBlue;
+        myAppTheme[0].mycolorsDetailsBackgroundColor = darkBlue;
+        myAppTheme[0].mycolorsDetailsDividerColor = white;
+        myAppTheme[0].mycolorsDetailsButtonsForgroundColor = white;
+        myAppTheme[0].mycolorsDetailsButtonsBackgroundColor = lightBlue;
 
-        mycolorsSettingsTemplateFontColor = white;
-        mycolorsSettingsTemplateContainerColor = darkBlue;
-        mycolorsSettingsSliderthumbColor = white;
-        mycolorsSettingContainersBordersColor = darkBlue;
-        mycolorsSettingFontFamilyColor = white;
-        mycolorsSelectedThemeBorderColor = white;
+        myAppTheme[0].mycolorsSettingsTemplateFontColor = white;
+        myAppTheme[0].mycolorsSettingsTemplateContainerColor = darkBlue;
+        myAppTheme[0].mycolorsSettingsSliderthumbColor = white;
+        myAppTheme[0].mycolorsSettingContainersBordersColor = darkBlue;
+        myAppTheme[0].mycolorsSettingFontFamilyColor = white;
+        myAppTheme[0].mycolorsSelectedThemeBorderColor = white;
         break;
       case 4:
-        mycolorsAppBarsColor = darkRed;
-        mycolorsPagesBackgroudColor = lightRed;
-        mycolorsNavigationBarBackground = darkRed;
+        myAppTheme[0].mycolorsAppBarsColor = darkRed;
+        myAppTheme[0].mycolorsPagesBackgroudColor = lightRed;
+        myAppTheme[0].mycolorsNavigationBarBackground = darkRed;
 
-        mycolorsZakrCardColor = darkRed;
-        mycolorsFontColor = white;
-        mycolorsIconsColor = white;
+        myAppTheme[0].mycolorsZakrCardColor = darkRed;
+        myAppTheme[0].mycolorsFontColor = white;
+        myAppTheme[0].mycolorsIconsColor = white;
 
-        mycolorsDetailsBackgroundColor = darkRed;
-        mycolorsDetailsDividerColor = white;
-        mycolorsDetailsButtonsForgroundColor = white;
-        mycolorsDetailsButtonsBackgroundColor = lightRed;
+        myAppTheme[0].mycolorsDetailsBackgroundColor = darkRed;
+        myAppTheme[0].mycolorsDetailsDividerColor = white;
+        myAppTheme[0].mycolorsDetailsButtonsForgroundColor = white;
+        myAppTheme[0].mycolorsDetailsButtonsBackgroundColor = lightRed;
 
-        mycolorsSettingsTemplateFontColor = white;
-        mycolorsSettingsTemplateContainerColor = darkRed;
-        mycolorsSettingsSliderthumbColor = white;
-        mycolorsSettingContainersBordersColor = darkRed;
-        mycolorsSettingFontFamilyColor = white;
-        mycolorsSelectedThemeBorderColor = white;
+        myAppTheme[0].mycolorsSettingsTemplateFontColor = white;
+        myAppTheme[0].mycolorsSettingsTemplateContainerColor = darkRed;
+        myAppTheme[0].mycolorsSettingsSliderthumbColor = white;
+        myAppTheme[0].mycolorsSettingContainersBordersColor = darkRed;
+        myAppTheme[0].mycolorsSettingFontFamilyColor = white;
+        myAppTheme[0].mycolorsSelectedThemeBorderColor = white;
         break;
       case 5:
-        mycolorsAppBarsColor = darkbrown;
-        mycolorsPagesBackgroudColor = lightbrown;
-        mycolorsNavigationBarBackground = darkbrown;
+        myAppTheme[0].mycolorsAppBarsColor = darkbrown;
+        myAppTheme[0].mycolorsPagesBackgroudColor = lightbrown;
+        myAppTheme[0].mycolorsNavigationBarBackground = darkbrown;
 
-        mycolorsZakrCardColor = darkbrown;
-        mycolorsFontColor = lightGold;
-        mycolorsIconsColor = lightGold;
+        myAppTheme[0].mycolorsZakrCardColor = darkbrown;
+        myAppTheme[0].mycolorsFontColor = lightGold;
+        myAppTheme[0].mycolorsIconsColor = lightGold;
 
-        mycolorsDetailsBackgroundColor = darkbrown;
-        mycolorsDetailsDividerColor = lightGold;
-        mycolorsDetailsButtonsForgroundColor = lightGold;
-        mycolorsDetailsButtonsBackgroundColor = lightbrown;
+        myAppTheme[0].mycolorsDetailsBackgroundColor = darkbrown;
+        myAppTheme[0].mycolorsDetailsDividerColor = lightGold;
+        myAppTheme[0].mycolorsDetailsButtonsForgroundColor = lightGold;
+        myAppTheme[0].mycolorsDetailsButtonsBackgroundColor = lightbrown;
 
-        mycolorsSettingsTemplateFontColor = lightGold;
-        mycolorsSettingsTemplateContainerColor = darkbrown;
-        mycolorsSettingsSliderthumbColor = lightGold;
-        mycolorsSettingContainersBordersColor = lightGold;
-        mycolorsSettingFontFamilyColor = lightGold;
-        mycolorsSelectedThemeBorderColor = lightGold;
+        myAppTheme[0].mycolorsSettingsTemplateFontColor = lightGold;
+        myAppTheme[0].mycolorsSettingsTemplateContainerColor = darkbrown;
+        myAppTheme[0].mycolorsSettingsSliderthumbColor = lightGold;
+        myAppTheme[0].mycolorsSettingContainersBordersColor = lightGold;
+        myAppTheme[0].mycolorsSettingFontFamilyColor = lightGold;
+        myAppTheme[0].mycolorsSelectedThemeBorderColor = lightGold;
         break;
     }
     notifyListeners();
   }
 }
-

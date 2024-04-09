@@ -24,7 +24,6 @@ class MyListView extends StatelessWidget {
   Widget build(BuildContext context) {
     final fontsProvider = Provider.of<Fonts>(context, listen: false);
     final themeProvider = Provider.of<AppTheme>(context, listen: false);
-    print('============================MyListView');
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 3.h),
       child: ListView.builder(
@@ -48,23 +47,23 @@ class MyListView extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadiusDirectional.circular(10),
                   border: Border.all(
-                    color: themeProvider.mycolorsSettingContainersBordersColor,
+                    color: themeProvider.myAppTheme[0].mycolorsSettingContainersBordersColor,
                     width: 2,
                   ),
                 ),
                 child: ListTile(
                   minLeadingWidth: 20.w,
-                  tileColor: themeProvider.mycolorsZakrCardColor,
+                  tileColor: themeProvider.myAppTheme[0].mycolorsZakrCardColor,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5)),
                   leading: Text('${index + 1}',
                       style: fontsProvider.textFamily700.copyWith(
                           fontSize: (fontsProvider.fontSizeValue * 2.5).sp,
-                          color: themeProvider.mycolorsFontColor)),
+                          color: themeProvider.myAppTheme[0].mycolorsFontColor)),
                   title: Text(usedListView[index].title,
                       style: fontsProvider.textFamily700.copyWith(
                           fontSize: (fontsProvider.fontSizeValue * 3).sp,
-                          color: themeProvider.mycolorsFontColor)),
+                          color: themeProvider.myAppTheme[0].mycolorsFontColor)),
                   trailing: listName == 'Main'
                       ? MainTrailing(cardIndex: index)
                       : FavoriteTrailing(cardIndex: index),

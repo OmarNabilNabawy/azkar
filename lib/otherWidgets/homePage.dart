@@ -9,6 +9,7 @@ import 'package:azkar_alyam_y_allayla/provider/searching.dart';
 import 'package:azkar_alyam_y_allayla/screens/favoriteScreen/favoriteScreen.dart';
 import 'package:azkar_alyam_y_allayla/screens/mainScreen/mainScreen.dart';
 import 'package:azkar_alyam_y_allayla/screens/settingsScreen/settingsScreen.dart';
+import 'package:azkar_alyam_y_allayla/sharedPreferences.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,19 +22,70 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   @override
   void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    NotificationService.startListeningNotificationEvents();
+    SharedPreference().loadingDataRequiredNavigatorKeyContext();
     AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
       if (!isAllowed) {
-        AwesomeNotifications().requestPermissionToSendNotifications();
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('السماح بالاشعارات'),
+            content: const Text('يود تطبيقنا أن يرسل لكم إشعارات بالأذكار في أوقاتها'),
+            actions: [
+              TextButton(
+                  onPressed: () => AwesomeNotifications()
+                          .requestPermissionToSendNotifications()
+                          .then((_) {
+                        Navigator.pop(context);
+                        NotificationService().sendNotification();
+                      }),
+                  child: const Text(
+                    'السماح',
+                    style: TextStyle(
+                      color: Colors.teal,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )),
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text(
+                  'عدم السماح',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
       }
-      if (isAllowed && !NotificationService().createdNotification) {
+      if (isAllowed && !NotificationService.allowedNotification) {
         NotificationService().sendNotification();
-        NotificationService().createdNotification = true;
       }
     });
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    if (state == AppLifecycleState.inactive) {
+      SharedPreference().saveData();
+    }
   }
 
   int index = 0;
@@ -43,14 +95,13 @@ class _HomePageState extends State<HomePage> {
     const SettingsScreen(),
   ];
   final appBarTitle = [
-    const AppBarTitleText(title: 'اذكار اليوم والليلة'),
-    const AppBarTitleText(title: 'الاذكار المفضلة'),
+    const AppBarTitleText(title: 'أذكار اليوم والليلة'),
+    const AppBarTitleText(title: 'الأذكار المفضلة'),
     const AppBarTitleText(title: ' الإعدادات'),
   ];
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<AppTheme>(context);
-    print('===============================HomePage');
     return Scaffold(
       extendBody: true,
       resizeToAvoidBottomInset: false,
@@ -62,7 +113,8 @@ class _HomePageState extends State<HomePage> {
             return search.isSearching
                 ? SearchingAppBar(pageIndex: index)
                 : AppBar(
-                    backgroundColor: themeProvider.mycolorsAppBarsColor,
+                    backgroundColor:
+                        themeProvider.myAppTheme[0].mycolorsAppBarsColor,
                     centerTitle: true,
                     title: appBarTitle[index],
                     actions: [
@@ -75,7 +127,8 @@ class _HomePageState extends State<HomePage> {
                               icon: Icon(
                                 Icons.search,
                                 size: isMobilScreen() ? 30 : 42,
-                                color: themeProvider.mycolorsIconsColor,
+                                color: themeProvider
+                                    .myAppTheme[0].mycolorsIconsColor,
                               ),
                             ),
                       widthSpace(10)
@@ -85,24 +138,29 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: pages[index],
-      backgroundColor: themeProvider.mycolorsPagesBackgroudColor,
+      backgroundColor: themeProvider.myAppTheme[0].mycolorsPagesBackgroudColor,
       bottomNavigationBar: CurvedNavigationBar(
         index: index,
         height: isMobilScreen() ? 42.h : 40.h,
         animationDuration: const Duration(milliseconds: 450),
-        color: themeProvider.mycolorsNavigationBarBackground,
-        buttonBackgroundColor: themeProvider.mycolorsNavigationBarBackground,
-        backgroundColor: themeProvider.mycolorsIconsColor,
+        color: themeProvider.myAppTheme[0].mycolorsNavigationBarBackground,
+        buttonBackgroundColor:
+            themeProvider.myAppTheme[0].mycolorsNavigationBarBackground,
+        backgroundColor: themeProvider.myAppTheme[0].mycolorsIconsColor,
         items: <Widget>[
-          Icon(Icons.home, size: 23.w, color: themeProvider.mycolorsIconsColor),
-          Icon(Icons.star, size: 23.w, color: themeProvider.mycolorsIconsColor),
+          Icon(Icons.home,
+              size: 23.w,
+              color: themeProvider.myAppTheme[0].mycolorsIconsColor),
+          Icon(Icons.star,
+              size: 23.w,
+              color: themeProvider.myAppTheme[0].mycolorsIconsColor),
           // عملت ده هنا علشان لما اغير الالوان الايكون بتاع الاعدادات يتغير لونه علطول
           Consumer<AppTheme>(
             builder: (context, value, child) {
               return Icon(
                 Icons.settings,
                 size: 23.w,
-                color: themeProvider.mycolorsIconsColor,
+                color: themeProvider.myAppTheme[0].mycolorsIconsColor,
               );
             },
           ),

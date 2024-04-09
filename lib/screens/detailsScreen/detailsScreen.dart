@@ -23,7 +23,7 @@ class DetailsScreen extends StatelessWidget {
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
           icon: Icon(Icons.arrow_back, size: isMobilScreen() ? 25 : 40),
-          color: themeProvider.mycolorsIconsColor,
+          color: themeProvider.myAppTheme[0].mycolorsIconsColor,
         ),
         title: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
@@ -31,14 +31,14 @@ class DetailsScreen extends StatelessWidget {
             '﴿ ${usedListViewInsideDetails[cardIndex].title} ﴾',
             style: fontsProvider.textFamilyBold.copyWith(
                 fontSize: (fontsProvider.fontSizeValue * 3.33).sp,
-                color: themeProvider.mycolorsFontColor,
+                color: themeProvider.myAppTheme[0].mycolorsFontColor,
                 height: 2),
           ),
         ),
-        backgroundColor: themeProvider.mycolorsDetailsBackgroundColor,
+        backgroundColor: themeProvider.myAppTheme[0].mycolorsDetailsBackgroundColor,
         centerTitle: true,
       ),
-      backgroundColor: themeProvider.mycolorsDetailsBackgroundColor,
+      backgroundColor: themeProvider.myAppTheme[0].mycolorsDetailsBackgroundColor,
       body: Padding(
         padding: EdgeInsets.only(left: 12.w, right: 12.w, top: 10.h),
         child: const Column(

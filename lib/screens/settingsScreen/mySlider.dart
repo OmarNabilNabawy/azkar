@@ -21,7 +21,7 @@ class MySlider extends StatelessWidget {
               Text(
                 '  حجم الخط (${(fontSize.fontSizeValue * 3).round()})',
                 style: TextStyle(
-                    fontSize: 13.sp, color: themeProvider.mycolorsFontColor),
+                    fontSize: 13.sp, color: themeProvider.myAppTheme[0].mycolorsFontColor),
               ),
               Expanded(
                 child: SliderTheme(
@@ -29,11 +29,11 @@ class MySlider extends StatelessWidget {
                     activeTickMarkColor: Colors.transparent,
                     inactiveTickMarkColor: Colors.transparent,
                     thumbShape: RoundSliderThumbShape(enabledThumbRadius: 10.h),
-                    thumbColor: themeProvider.mycolorsSettingsSliderthumbColor,
+                    thumbColor: themeProvider.myAppTheme[0].mycolorsSettingsSliderthumbColor,
                     activeTrackColor:
-                        themeProvider.mycolorsSettingsSliderthumbColor,
+                        themeProvider.myAppTheme[0].mycolorsSettingsSliderthumbColor,
                     inactiveTrackColor:
-                        themeProvider.mycolorsSettingsSliderthumbColor,
+                        themeProvider.myAppTheme[0].mycolorsSettingsSliderthumbColor,
                     overlayColor: Colors.transparent,
                   ),
                   child: Slider(

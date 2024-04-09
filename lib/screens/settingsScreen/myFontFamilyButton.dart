@@ -21,8 +21,9 @@ class MyFontFamilyButton extends StatelessWidget {
       style: TextButton.styleFrom(foregroundColor: Colors.black54),
       child: Text(
         'بسم الله الرحمن الرحيم',
+        overflow: TextOverflow.ellipsis,
         style: textStyle.copyWith(
-          color: themeProvider.mycolorsSettingFontFamilyColor,
+          color: themeProvider.myAppTheme[0].mycolorsSettingFontFamilyColor,
           fontSize: 15.sp,
         ),
       ),

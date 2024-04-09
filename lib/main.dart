@@ -1,3 +1,9 @@
+import 'package:azkar_alyam_y_allayla/sharedPreferences.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:azkar_alyam_y_allayla/const.dart';
 import 'package:azkar_alyam_y_allayla/generated/l10n.dart';
 import 'package:azkar_alyam_y_allayla/otherWidgets/notifications.dart';
@@ -6,21 +12,27 @@ import 'package:azkar_alyam_y_allayla/provider/Fonts.dart';
 import 'package:azkar_alyam_y_allayla/provider/counter.dart';
 import 'package:azkar_alyam_y_allayla/provider/favorite.dart';
 import 'package:azkar_alyam_y_allayla/screens/detailsScreen/detailsScreen.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'otherWidgets/homePage.dart';
 import 'provider/searching.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   NotificationService().awesomeNotificationInitialization();
-  runApp(const MyApp());
+  await SharedPreference().getSharedPreference();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]).then((_) {
+    runApp(const MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
+  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  static late SharedPreferences sp;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +51,7 @@ class MyApp extends StatelessWidget {
             ],
             child: MaterialApp(
               debugShowCheckedModeBanner: false,
+              navigatorKey: navigatorKey,
               locale: const Locale('ar'),
               localizationsDelegates: const [
                 S.delegate,

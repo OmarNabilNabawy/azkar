@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Fonts extends ChangeNotifier {
+  String fontFamilyName = 'Amiri';
   double fontSizeValue = 6;
-  TextStyle textFamily700 = GoogleFonts.amiri(fontWeight: FontWeight.w700);
-  TextStyle textFamilyBold = GoogleFonts.amiri(fontWeight: FontWeight.bold);
+
+  TextStyle get textFamily700 =>
+      GoogleFonts.getFont(fontFamilyName, fontWeight: FontWeight.w700);
+  TextStyle get textFamilyBold =>
+      GoogleFonts.getFont(fontFamilyName, fontWeight: FontWeight.bold);
 
   void changeFontSize(double inputValue) {
     fontSizeValue = inputValue;
@@ -14,30 +18,26 @@ class Fonts extends ChangeNotifier {
   void selectFontFamily(int index) {
     switch (index) {
       case 0:
-        textFamily700 = GoogleFonts.cairo(fontWeight: FontWeight.w700);
-        textFamilyBold = GoogleFonts.cairo(fontWeight: FontWeight.w700);
+        fontFamilyName = 'Cairo';
         break;
       case 1:
-        textFamily700 = GoogleFonts.lalezar(fontWeight: FontWeight.w700);
-        textFamilyBold = GoogleFonts.lalezar(fontWeight: FontWeight.w700);
+        fontFamilyName = 'Lalezar';
+        break;
       case 2:
-        textFamily700 = GoogleFonts.marhey(fontWeight: FontWeight.w700);
-        textFamilyBold = GoogleFonts.marhey(fontWeight: FontWeight.w700);
+        fontFamilyName = 'Marhey';
+        break;
       case 3:
-        textFamily700 = GoogleFonts.rakkas(fontWeight: FontWeight.w700);
-        textFamilyBold = GoogleFonts.rakkas(fontWeight: FontWeight.w700);
+        fontFamilyName = 'Rakkas';
+        break;
       case 4:
-        textFamily700 = GoogleFonts.arefRuqaa(fontWeight: FontWeight.w700);
-        textFamilyBold = GoogleFonts.arefRuqaa(fontWeight: FontWeight.w700);
+        fontFamilyName = 'Aref Ruqaa';
+        break;
       case 5:
-        textFamily700 = GoogleFonts.markaziText(fontWeight: FontWeight.w700);
-        textFamilyBold = GoogleFonts.markaziText(fontWeight: FontWeight.w700);
+        fontFamilyName = 'Markazi Text';
+        break;
       default:
-        textFamily700 = GoogleFonts.amiri(fontWeight: FontWeight.w700);
-        textFamilyBold = GoogleFonts.amiri(fontWeight: FontWeight.w700);
+        fontFamilyName = 'Amiri';
     }
     notifyListeners();
   }
 }
-
-  

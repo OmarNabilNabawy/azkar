@@ -19,7 +19,7 @@ class AppBarTitleText extends StatelessWidget {
       title,
       style: fontsProvider.textFamilyBold.copyWith(
         fontSize: 22.sp,
-        color: themeProvider.mycolorsFontColor,
+        color: themeProvider.myAppTheme[0].mycolorsFontColor,
       ),
     );
   }

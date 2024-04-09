@@ -14,7 +14,7 @@ class AppThemes extends StatelessWidget {
       child: Consumer<AppTheme>(
         builder: (context, appTheme, child) {
           return ListView.builder(
-            itemCount: appTheme.themes.length,
+            itemCount: appTheme.settingsContainerThemes.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
               return Padding(
@@ -28,11 +28,12 @@ class AppThemes extends StatelessWidget {
                     height: 40.h,
                     width: 110.w,
                     decoration: BoxDecoration(
-                      color: appTheme.themes[index].bodyColor,
+                      color: appTheme.settingsContainerThemes[index].bodyColor,
                       border: Border.all(
-                        color: appTheme.themes[index].isSelected
-                            ? appTheme.mycolorsSelectedThemeBorderColor
-                            : Colors.transparent,
+                        color:
+                            appTheme.settingsContainerThemes[index].isSelected
+                                ? appTheme.myAppTheme[0].mycolorsSelectedThemeBorderColor
+                                : Colors.transparent,
                         width: 4,
                       ),
                       borderRadius: BorderRadius.circular(10),
@@ -42,7 +43,8 @@ class AppThemes extends StatelessWidget {
                         'بسم الله',
                         style: TextStyle(
                           fontSize: 16.sp,
-                          color: appTheme.themes[index].fontColor,
+                          color:
+                              appTheme.settingsContainerThemes[index].fontColor,
                         ),
                       ),
                     ),

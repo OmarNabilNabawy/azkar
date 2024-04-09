@@ -15,7 +15,6 @@ class FavoriteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('================================FavoriteScreen');
     final themeProvider = Provider.of<AppTheme>(context,listen: false);
     final favoriteListView = Provider.of<Favorite>(context).favoriteListView;
     final fontProvider = Provider.of<Fonts>(context,listen: false);
@@ -25,7 +24,7 @@ class FavoriteScreen extends StatelessWidget {
           'ليس هناك اذكار في المفضلة',
           style: fontProvider.textFamily700.copyWith(
             fontSize: 16.sp,
-            color: themeProvider.mycolorsFontColor,
+            color: themeProvider.myAppTheme[0].mycolorsFontColor,
           ),
         ),
       );
@@ -59,7 +58,6 @@ class FavoriteTrailing extends StatelessWidget {
         Provider.of<Favorite>(context, listen: false).favoriteListView;
     final searchedList =
         Provider.of<Searching>(context, listen: false).searchedList;
-    print('================================FavoriteScreen$cardIndex');
     return IconButton(
       onPressed: () =>
           Provider.of<Favorite>(context, listen: false).removeFromFavorites(
@@ -69,7 +67,7 @@ class FavoriteTrailing extends StatelessWidget {
       icon: Icon(
         Icons.star,
         size: isMobilScreen() ? 35 : 43,
-        color: themeProvider.mycolorsIconsColor,
+        color: themeProvider.myAppTheme[0].mycolorsIconsColor,
       ),
     );
   }

@@ -1,5 +1,3 @@
-import 'package:azkar_alyam_y_allayla/main.dart';
-import 'package:azkar_alyam_y_allayla/otherWidgets/notifications.dart';
 import 'package:azkar_alyam_y_allayla/provider/AppTheme.dart';
 import 'package:azkar_alyam_y_allayla/provider/Fonts.dart';
 import 'package:azkar_alyam_y_allayla/provider/counter.dart';
@@ -31,21 +29,21 @@ class SecondHalfOfdetailsScreen extends StatelessWidget {
                   provider.increment();
                 },
                 elevatedButtonChild: Text(
-                  'قَرأت الذِكر',
+                  'قَرأته',
                   style: fontProvider.textFamily700.copyWith(fontSize: 16.sp),
                 ),
-                height: isMobilScreen() ? 30 : 41,
-                width: 120,
+                height: isMobilScreen() ? 30 : 35,
+                width: isMobilScreen() ? 100 : 90,
               ),
               widthSpace(10),
               Consumer<Counter>(
                 builder: (context, counterProvider, child) {
                   return CircleAvatar(
-                    radius: isMobilScreen() ? 27 : 40,
-                    backgroundColor:
-                        themeProvider.mycolorsDetailsButtonsBackgroundColor,
-                    foregroundColor:
-                        themeProvider.mycolorsDetailsButtonsForgroundColor,
+                    radius: isMobilScreen() ? 25 : 37,
+                    backgroundColor: themeProvider
+                        .myAppTheme[0].mycolorsDetailsButtonsBackgroundColor,
+                    foregroundColor: themeProvider
+                        .myAppTheme[0].mycolorsDetailsButtonsForgroundColor,
                     child: Text(
                       '${usedListViewInsideDetails[counterProvider.cardIndex].counter}',
                       style:
@@ -61,8 +59,8 @@ class SecondHalfOfdetailsScreen extends StatelessWidget {
                   Icons.restart_alt,
                   size: isMobilScreen() ? 28 : 41,
                 ),
-                height: isMobilScreen() ? 30 : 41,
-                width: 60,
+                height: isMobilScreen() ? 30 : 35,
+                width: isMobilScreen() ? 60 : 50,
               ),
               widthSpace(5),
               CustomElevatedButton(
@@ -74,8 +72,8 @@ class SecondHalfOfdetailsScreen extends StatelessWidget {
                   Icons.share,
                   size: isMobilScreen() ? 26 : 41,
                 ),
-                height: isMobilScreen() ? 30 : 41,
-                width: 60,
+                height: isMobilScreen() ? 30 : 35,
+                width: isMobilScreen() ? 60 : 50,
               ),
             ],
           ),
@@ -97,13 +95,15 @@ class SecondHalfOfdetailsScreen extends StatelessWidget {
                       leading: Text('${index + 1} -',
                           style: TextStyle(
                               fontSize: 12.sp,
-                              color: themeProvider.mycolorsFontColor)),
+                              color: themeProvider
+                                  .myAppTheme[0].mycolorsFontColor)),
                       title: Text(
                         usedListViewInsideDetails[counterProvider.cardIndex]
                             .timeOfRead![index],
                         style: TextStyle(
                             fontSize: 14.sp,
-                            color: themeProvider.mycolorsFontColor),
+                            color:
+                                themeProvider.myAppTheme[0].mycolorsFontColor),
                       ),
                     );
                   },

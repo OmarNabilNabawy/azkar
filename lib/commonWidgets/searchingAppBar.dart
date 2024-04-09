@@ -16,18 +16,17 @@ class SearchingAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('================================SearchingAppBar');
     final themeProvider = Provider.of<AppTheme>(context, listen: false);
     final searchProvider = Provider.of<Searching>(context, listen: false);
     final favoriteProvider = Provider.of<Favorite>(context, listen: false);
     return AppBar(
-      backgroundColor: themeProvider.mycolorsAppBarsColor,
+      backgroundColor: themeProvider.myAppTheme[0].mycolorsAppBarsColor,
       leading: IconButton(
         onPressed: () => searchProvider.closeSearchAppBar(),
         icon: Icon(
           Icons.arrow_back,
           size: isMobilScreen() ? 24 : 35,
-          color: themeProvider.mycolorsIconsColor,
+          color: themeProvider.myAppTheme[0].mycolorsIconsColor,
         ),
       ),
       title: TextField(
@@ -38,17 +37,17 @@ class SearchingAppBar extends StatelessWidget {
                   favoriteProvider.favoriteListView, inputValue);
         },
         controller: Provider.of<Searching>(context).searchController,
-        cursorColor: themeProvider.mycolorsIconsColor,
+        cursorColor: themeProvider.myAppTheme[0].mycolorsIconsColor,
         autofocus: true,
         style: TextStyle(
-          color: themeProvider.mycolorsFontColor,
+          color: themeProvider.myAppTheme[0].mycolorsFontColor,
           decorationThickness: 0,
         ),
         autocorrect: true,
         cursorHeight: 20.h,
         decoration: InputDecoration(
           hintStyle: TextStyle(
-              fontSize: 14.sp, color: themeProvider.mycolorsIconsColor),
+              fontSize: 14.sp, color: themeProvider.myAppTheme[0].mycolorsIconsColor),
           hintText: ' بحث...',
           border: InputBorder.none,
         ),
@@ -59,7 +58,7 @@ class SearchingAppBar extends StatelessWidget {
           icon: Icon(
             Icons.close,
             size: isMobilScreen() ? 24 : 35,
-            color: themeProvider.mycolorsIconsColor,
+            color: themeProvider.myAppTheme[0].mycolorsIconsColor,
           ),
         )
       ],
